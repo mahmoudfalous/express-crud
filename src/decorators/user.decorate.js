@@ -14,7 +14,7 @@ exports.decorateWithPosts = (user) => {
     name: user.name,
     email: user.email,
     posts: user.posts?.map(post =>
-      PostDecorator.decorate(post)
+      PostDecorator.decorate(post , user.id)
     ) || [],
   };
 };

@@ -1,3 +1,4 @@
+// post.decorator.js
 const commentDecorator = require('./comment.decorator');
 exports.decorate = (post, currentUserId = null) => {
   return {
@@ -11,10 +12,8 @@ exports.decorate = (post, currentUserId = null) => {
     comments: post.comments?.map(comment =>
       commentDecorator.decorate(comment, currentUserId)
     ) || [],
-    isOwner: currentUserId
-      ? post.userId === currentUserId
-      : false,
 
+    isOwner: currentUserId ? post.userId === currentUserId : false,
     createdAt: new Date(post.createdAt).toLocaleDateString(),
   };
 };

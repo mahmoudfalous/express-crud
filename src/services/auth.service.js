@@ -37,8 +37,17 @@ class AuthService {
     const user = await prisma.user.findUnique({
       where: { email },
       include: {
-        posts: true,
-      },
+        posts: {
+          include: {
+            comments: {
+              include: {
+                user: true
+              }
+            },
+            user: true
+          }
+        }
+      }
     });
 
 
